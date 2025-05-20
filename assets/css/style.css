@@ -1,0 +1,68 @@
+body {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+h2 {
+    color: #ffffff;
+}
+
+.tab-btn {
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    font-weight: bold;
+    border-bottom: 2px solid #0d6efd;
+}
+
+.card {
+    background-color: #1e1e1e;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    border-radius: 10px 10px 0 0;
+}
+
+.card-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.btn-favoritar {
+    margin-top: 10px;
+}
+
+.text-unknown {
+    color: #aaa !important;
+    font-style: italic;
+}
+
+.modal-content {
+    background-color: #1f1f1f;
+    color: #fff;
+}
+
+.btn-close-white {
+    filter: invert(1);
+}
+
