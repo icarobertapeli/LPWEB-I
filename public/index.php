@@ -25,6 +25,7 @@ $logado = isset($_SESSION["usuario_id"]);
         <?php if ($logado): ?>
             <span class="me-3 text-light">✅ Logado</span>
             <a class="btn btn-outline-light btn-sm me-2" href="../admin/carrinho.php">Carrinho</a>
+            <a class="btn btn-outline-light btn-sm me-2" href="../admin/historico.php">Histórico</a>
             <a class="btn btn-danger btn-sm" href="../auth/logout.php">Logout</a>
         <?php else: ?>
             <a class="btn btn-primary btn-sm me-2" href="../auth/login.php">Login</a>
