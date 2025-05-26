@@ -1,5 +1,3 @@
-// scripts.js atualizado com descrição e campos padronizados como 'Informação não disponível'
-
 let generosMap = {};
 
 function carregarGeneros(tipo, callback) {
@@ -45,13 +43,13 @@ function carregarPopulares(tipo) {
                             <div class="card-body p-2 text-center d-flex flex-column justify-content-between">
                                 <h6 class="card-title">${titulo}</h6>
                                 <small class="${categoriaClasse}">${categoria}</small>
-                                ${logado ? `<button class="btn btn-outline-warning btn-sm btn-favoritar mt-2"
+                                ${logado ? `<button class="btn btn-outline-success btn-sm btn-comprar mt-2"
                                     data-titulo="${titulo}"
                                     data-tmdb_id="${item.id}"
                                     data-tipo="${tipo}"
                                     data-categoria="${categoria}"
                                     data-poster="${item.poster_path}">
-                                    ⭐ Favoritar
+                                    🛒 Comprar
                                 </button>` : ''}
                             </div>
                         </div>
@@ -146,12 +144,26 @@ $(document).ready(function () {
         carregarGeneros(tipo, () => carregarPopulares(tipo));
     });
 
-    $(document).on("click", ".btn-favoritar", function () {
-        const dados = $(this).data();
-        $.post("../admin/favoritar.php", dados, function (resposta) {
-            alert(resposta);
-        });
+$(document).on("click", ".btn-comprar", function () {
+    const dados = $(this).data();
+    const preco = (Math.floor(Math.random() * (55 - 10 + 1)) + 10).toFixed(2); // Simulação de preço
+
+    $("#modalCompraTitulo").text(dados.titulo);
+    $("#modalCompraPreco").text(preco);
+    $("#modalDadosCompra").val(JSON.stringify({ ...dados, preco }));
+
+    const modal = new bootstrap.Modal(document.getElementById("modalCompra"));
+    modal.show();
+});
+
+$("#btnConfirmarCompra").on("click", function () {
+    const dados = JSON.parse($("#modalDadosCompra").val());
+    $.post("../admin/adicionar_carrinho.php", dados, function (resposta) {
+        bootstrap.Modal.getInstance(document.getElementById("modalCompra")).hide();
+        const toast = new bootstrap.Toast(document.getElementById("toastCompra"));
+        toast.show();
     });
+});
 
     $(document).on("click", ".card-img-top", function () {
         const tipo = $(this).data("tipo");
